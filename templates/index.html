@@ -1,0 +1,7 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python Weather App</title><link rel="stylesheet" href="{{url_for('static',filename='style.css')}}"></head>
+<body><main><h1>Weather App</h1><p>Real-time weather using Python + OpenWeather.</p>
+<form method="post"><input name="city" value="{{city}}" placeholder="Enter city e.g. Chennai" required><button>Search</button></form>
+{% if error %}<div class="error">{{error}}</div>{% endif %}
+{% if weather %}<section class="weather"><h2>{{weather.city}}, {{weather.country}}</h2><img src="https://openweathermap.org/img/wn/{{weather.icon}}@2x.png" alt=""><h3>{{weather.temperature}}°C</h3><p>{{weather.description}}</p>
+<div class="grid"><div>Feels like<br><b>{{weather.feels_like}}°C</b></div><div>Humidity<br><b>{{weather.humidity}}%</b></div><div>Pressure<br><b>{{weather.pressure}} hPa</b></div><div>Wind<br><b>{{weather.wind}} m/s</b></div><div>Visibility<br><b>{{weather.visibility}} km</b></div></div></section>{% endif %}
+</main></body></html>
