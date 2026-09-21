@@ -1,0 +1,18 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reviews - Python Weather App</title><link rel="stylesheet" href="{{url_for('static',filename='style.css')}}"></head>
+<body><main><nav><a href="{{url_for('index')}}">Weather</a><a href="{{url_for('reviews')}}">Reviews</a></nav>
+<h1>User Reviews</h1><p>Used the Weather App? Share your experience.</p>
+<section class="review-form">
+{% if error %}<div class="error">{{error}}</div>{% endif %}
+<form method="post" class="stack">
+<input name="name" placeholder="Your name" maxlength="60" required>
+<select name="rating" required><option value="">Choose rating</option><option value="5">★★★★★ - Excellent</option><option value="4">★★★★☆ - Very good</option><option value="3">★★★☆☆ - Good</option><option value="2">★★☆☆☆ - Fair</option><option value="1">★☆☆☆☆ - Poor</option></select>
+<textarea name="comment" placeholder="Write your review..." maxlength="500" required></textarea>
+<button type="submit">Submit Review</button></form></section>
+<section class="reviews-list">
+{% if reviews %}{% for review in reviews %}
+<article class="review-card"><div class="review-head"><strong>{{review.name}}</strong><span class="stars">{{"★" * review.rating}}{{"☆" * (5-review.rating)}}</span></div>
+<p>{{review.comment}}</p><small>{{review.created_at}}</small></article>
+{% endfor %}{% else %}<div class="review-card"><p>No reviews yet. Be the first to leave one!</p></div>{% endif %}
+</section></main></body></html>
